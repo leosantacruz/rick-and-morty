@@ -1,3 +1,3 @@
 # rick-and-morty
 
-[TEST] - Rick and Morty project using React and
+Another Rick and Morty APP using React and the Public API: https://rickandmortyapi.com/
