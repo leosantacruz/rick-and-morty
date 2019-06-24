@@ -1,15 +1,15 @@
 import React from "react";
-import "../pages/styles/Listado.css";
+import "../pages/styles/Characters.css";
 import Loader from "../components/Loader";
 
-class Listado extends React.Component {
+class Characters extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       pageNumber: 1,
       loading: true,
-      datos: {
+      data: {
         info: [],
         results: []
       }
@@ -18,20 +18,20 @@ class Listado extends React.Component {
 
   componentDidMount() {
     console.log("Montado");
-    this.traerDatos();
+    this.getData();
   }
 
-  traerDatos = async e => {
+  getData = async e => {
     try {
-      const respuesta = await fetch(
+      const response = await fetch(
         `https://rickandmortyapi.com/api/character?limit=4&page=${
           this.state.pageNumber
         }`
       );
-      const datos = await respuesta.json();
-      console.log(datos);
+      const data = await response.json();
+      console.log(data);
       this.setState({
-        datos: datos,
+        data: data,
         loading: false
       });
     } catch (error) {
@@ -46,7 +46,7 @@ class Listado extends React.Component {
         pageNumber: this.state.pageNumber + e
       },
       () => {
-        this.traerDatos();
+        this.getData();
       }
     );
   };
@@ -79,7 +79,7 @@ class Listado extends React.Component {
         {this.state.loading && <Loader />}
 
         <div class="row">
-          {this.state.datos.results.map(p => {
+          {this.state.data.results.map(p => {
             return (
               <React.Fragment key={p.id}>
                 <div class="col-sm-4">
@@ -120,4 +120,4 @@ class Listado extends React.Component {
   }
 }
 
-export default Listado;
+export default Characters;
