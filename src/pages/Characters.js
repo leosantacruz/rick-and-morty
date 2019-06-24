@@ -1,20 +1,17 @@
 import React from "react";
 import "../pages/styles/Characters.css";
 import Loader from "../components/Loader";
+import { Link } from "react-router-dom";
 
 class Characters extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      pageNumber: 1,
-      loading: true,
-      data: {
-        info: [],
-        results: []
-      }
-    };
-  }
+  state = {
+    pageNumber: 1,
+    loading: true,
+    data: {
+      info: [],
+      results: []
+    }
+  };
 
   componentDidMount() {
     console.log("Montado");
@@ -78,11 +75,14 @@ class Characters extends React.Component {
 
         {this.state.loading && <Loader />}
 
-        <div class="row">
+        <div className="row">
           {this.state.data.results.map(p => {
             return (
               <React.Fragment key={p.id}>
-                <div class="col-sm-4">
+                <Link
+                  to={`/detail/${p.id}`}
+                  className="col-sm-4 text-decoration-none text-reset"
+                >
                   <div className="media">
                     <img
                       className="mr-3"
@@ -94,7 +94,7 @@ class Characters extends React.Component {
                       Species: {p.species}
                     </div>
                   </div>
-                </div>
+                </Link>
               </React.Fragment>
             );
           })}

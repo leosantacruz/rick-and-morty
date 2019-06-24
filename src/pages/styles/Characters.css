@@ -7,3 +7,7 @@
 .media {
   margin-bottom: 20px;
 }
+
+.media:hover .media-body {
+  color: #0072bb;
+}
