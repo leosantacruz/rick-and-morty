@@ -6,7 +6,7 @@ class Navbar extends React.Component {
     return (
       <React.Fragment>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          <Link className="navbar-brand" to="/home">
+          <Link className="navbar-brand" to="/rick-and-morty/home">
             Rick and Morty
           </Link>
           <button
@@ -25,14 +25,14 @@ class Navbar extends React.Component {
               <NavLink
                 activeClassName="active"
                 className="nav-item nav-link"
-                to="/home"
+                to="/rick-and-morty/home"
               >
                 Home
               </NavLink>
               <NavLink
                 activeClassName="active"
                 className="nav-item nav-link"
-                to="/characters"
+                to="/rick-and-morty/characters"
               >
                 List of characters
               </NavLink>

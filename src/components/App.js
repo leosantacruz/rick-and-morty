@@ -11,8 +11,12 @@ class App extends React.Component {
       <BrowserRouter>
         <Layout>
           <Switch>
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/characters" component={Characters} />
+            <Route exact path="/rick-and-morty/home" component={Home} />
+            <Route
+              exact
+              path="/rick-and-morty/characters"
+              component={Characters}
+            />
           </Switch>
         </Layout>
       </BrowserRouter>
