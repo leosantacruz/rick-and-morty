@@ -1,12 +1,13 @@
 import React from "react";
 import "../pages/styles/Listado.css";
+import Loader from "../components/Loader";
 
 class Listado extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      pageNumber: 3,
+      pageNumber: 1,
       loading: true,
       datos: {
         info: [],
@@ -58,7 +59,7 @@ class Listado extends React.Component {
     console.log("renderizado");
     return (
       <React.Fragment>
-        <h4 className="mb-4 mt-4">Rick and Morty's characters</h4>
+        <h4 className="mb-4 mt-4">List of characters</h4>
         <div className="mb-2">Page number: {this.state.pageNumber}</div>
         <div className="btn-group mb-4">
           <button
@@ -75,28 +76,29 @@ class Listado extends React.Component {
           </button>
         </div>
 
-        {this.state.loading && (
-          <div className="alert alert-primary">Cargando</div>
-        )}
+        {this.state.loading && <Loader />}
 
-        {this.state.datos.results.map(p => {
-          return (
-            <React.Fragment key={p.id}>
-              <div className="media">
-                <img
-                  className="mr-3"
-                  src={p.image}
-                  alt="Generic placeholder image"
-                />
-                <div className="media-body">
-                  <h5 className="mt-0">{p.name}</h5>
-                  Species: {p.species}
+        <div class="row">
+          {this.state.datos.results.map(p => {
+            return (
+              <React.Fragment key={p.id}>
+                <div class="col-sm-4">
+                  <div className="media">
+                    <img
+                      className="mr-3"
+                      src={p.image}
+                      alt="Generic placeholder image"
+                    />
+                    <div className="media-body">
+                      <h5 className="mt-0">{p.name}</h5>
+                      Species: {p.species}
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <hr />
-            </React.Fragment>
-          );
-        })}
+              </React.Fragment>
+            );
+          })}
+        </div>
 
         <div className="mb-2">Page number: {this.state.pageNumber}</div>
         <div className="btn-group mb-4">
