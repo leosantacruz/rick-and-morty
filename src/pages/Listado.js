@@ -58,7 +58,7 @@ class Listado extends React.Component {
     console.log("renderizado");
     return (
       <React.Fragment>
-        <h4 className="mb-4 mt-4">Personajes de Rick and Morty</h4>
+        <h4 className="mb-4 mt-4">Rick and Morty's characters</h4>
         <div className="mb-2">Page number: {this.state.pageNumber}</div>
         <div className="btn-group mb-4">
           <button
