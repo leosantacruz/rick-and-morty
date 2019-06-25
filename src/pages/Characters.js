@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 class Characters extends React.Component {
   state = {
     pageNumber: 1,
+    filter: "",
     loading: true,
     data: {
       info: [],
@@ -19,11 +20,15 @@ class Characters extends React.Component {
   }
 
   getData = async e => {
+    this.setState({
+      loading: true
+    });
+
     try {
       const response = await fetch(
         `https://rickandmortyapi.com/api/character?limit=4&page=${
           this.state.pageNumber
-        }`
+        }&name=${this.state.filter}`
       );
       const data = await response.json();
       console.log(data);
@@ -48,6 +53,21 @@ class Characters extends React.Component {
     );
   };
 
+  filterByName = e => {
+    this.setState({
+      filter: e.target.value,
+      pageNumber: 1
+    });
+
+    if (e.target.value.lenght == 0) {
+      this.setState({
+        filter: ""
+      });
+    }
+
+    this.getData();
+  };
+
   componentWillUnmount() {
     console.log("Desmontado");
   }
@@ -57,6 +77,10 @@ class Characters extends React.Component {
     return (
       <React.Fragment>
         <h4 className="mb-4 mt-4">List of characters</h4>
+        <div className="form-group">
+          <label>Filter by name</label>
+          <input onChange={this.filterByName} className="form-control" />
+        </div>
         <div className="mb-2">Page number: {this.state.pageNumber}</div>
         <div className="btn-group mb-4">
           <button

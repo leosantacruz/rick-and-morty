@@ -8,7 +8,7 @@ class Detail extends React.Component {
     loading: false,
     error: null,
     data: {
-      location: {},
+      origin: {},
       episode: []
     }
   };
@@ -43,6 +43,7 @@ class Detail extends React.Component {
 
   render() {
     const p = this.state.data;
+    console.log(p);
 
     if (this.state.loading == true) {
       return (
@@ -62,9 +63,11 @@ class Detail extends React.Component {
         <DetailCharacter
           name={p.name}
           species={p.species}
-          location={p.location.name}
+          origin={p.origin.name}
           episode={p.episode}
           image={p.image}
+          gender={p.gender}
+          status={p.status}
         />
       </React.Fragment>
     );
