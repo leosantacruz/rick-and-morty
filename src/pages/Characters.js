@@ -55,11 +55,12 @@ class Characters extends React.Component {
 
   filterByName = e => {
     this.setState({
-      filter: e.target.value,
-      pageNumber: 1
+      filter: e.target.value.trim(),
+      pageNumber: 1,
+      firstPage: true
     });
 
-    if (e.target.value.lenght == 0) {
+    if (e.target.value.trim() == "") {
       this.setState({
         filter: ""
       });
@@ -73,25 +74,36 @@ class Characters extends React.Component {
   }
 
   render() {
-    console.log("renderizado");
+    let firstStatus = "";
+    let nextStatus = "";
+
+    if (this.state.data.info.prev == "") {
+      firstStatus = "disabled";
+    }
+    if (this.state.data.info.next == "") {
+      nextStatus = "disabled";
+    }
+
     return (
       <React.Fragment>
         <h4 className="mb-4 mt-4">List of characters</h4>
         <div className="form-group">
           <label>Filter by name</label>
-          <input onChange={this.filterByName} className="form-control" />
+          <input onKeyUp={this.filterByName} className="form-control" />
         </div>
         <div className="mb-2">Page number: {this.state.pageNumber}</div>
         <div className="btn-group mb-4">
           <button
             className="btn btn-success"
             onClick={e => this.changePage(-1)}
+            disabled={firstStatus}
           >
             Page before
           </button>
           <button
             className="btn btn-success"
             onClick={e => this.changePage(+1)}
+            disabled={nextStatus}
           >
             Next page
           </button>
@@ -129,12 +141,14 @@ class Characters extends React.Component {
           <button
             className="btn btn-success"
             onClick={e => this.changePage(-1)}
+            disabled={firstStatus}
           >
             Page before
           </button>
           <button
             className="btn btn-success"
             onClick={e => this.changePage(+1)}
+            disabled={nextStatus}
           >
             Next page
           </button>

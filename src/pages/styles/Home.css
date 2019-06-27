@@ -1,3 +1,11 @@
 #homeBackground {
   max-width: 100%;
 }
+
+#confetti {
+  margin-top: 56px;
+}
+
+body {
+  overflow-x: hidden;
+}
